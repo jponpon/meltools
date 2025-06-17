@@ -3,8 +3,38 @@
 const SUPABASE_URL = process.env.SUPABASE_URL || 'YOUR_SUPABASE_URL';
 const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
 
-// Supabaseクライアントの初期化
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// デバッグ用：接続情報を確認
+console.log('Supabase URL:', SUPABASE_URL);
+console.log('URL is valid:', SUPABASE_URL.startsWith('https://'));
+
+// Supabaseクライアントの初期化（エラーハンドリング付き）
+let supabase;
+try {
+    if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+        throw new Error('Supabase URLが設定されていません。Netlifyの環境変数を確認してください。');
+    }
+    if (!SUPABASE_KEY || SUPABASE_KEY === 'YOUR_SUPABASE_ANON_KEY') {
+        throw new Error('Supabase Anon Keyが設定されていません。Netlifyの環境変数を確認してください。');
+    }
+    
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch (error) {
+    console.error('Supabase初期化エラー:', error);
+    // エラーメッセージを画面に表示
+    document.addEventListener('DOMContentLoaded', () => {
+        const loadingElement = document.getElementById('loading');
+        const errorElement = document.getElementById('error-message');
+        loadingElement.style.display = 'none';
+        errorElement.style.display = 'block';
+        errorElement.innerHTML = `
+            <strong>初期化エラー:</strong><br>
+            ${error.message}<br><br>
+            <small>Netlifyダッシュボードで以下の環境変数を設定してください：<br>
+            - SUPABASE_URL<br>
+            - SUPABASE_ANON_KEY</small>
+        `;
+    });
+}
 
 /**
  * ページ読み込み時の処理
