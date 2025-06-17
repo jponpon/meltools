@@ -1,12 +1,7 @@
 // Supabase接続設定
-// 1. ローカル設定ファイル（config.js）がある場合はそれを使用
-// 2. なければNetlifyの環境変数から値を取得（ビルド時に置換される）
-const SUPABASE_URL = window.SUPABASE_CONFIG?.url || 
-                     process.env.SUPABASE_URL || 
-                     'YOUR_SUPABASE_URL';
-const SUPABASE_KEY = window.SUPABASE_CONFIG?.anonKey || 
-                     process.env.SUPABASE_ANON_KEY || 
-                     'YOUR_SUPABASE_ANON_KEY';
+// Netlifyの環境変数から値を取得（ビルド時に置換される）
+const SUPABASE_URL = process.env.SUPABASE_URL || 'YOUR_SUPABASE_URL';
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
 
 // デバッグ用：接続情報を確認
 console.log('Supabase URL:', SUPABASE_URL);
