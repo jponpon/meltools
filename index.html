@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メルカリ商品管理ツール</title>
+    <!-- キャッシュ制御メタタグ -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- タイムスタンプ付きでCSSを読み込み -->
+    <link rel="stylesheet" href="style.css?v=1.0">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>メルカリ商品管理ツール</h1>
+            <p>商品の出品用プロンプトを簡単に生成・コピーできます</p>
+        </header>
+
+        <main>
+            <!-- ローディング表示 -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>商品データを読み込み中...</p>
+            </div>
+
+            <!-- エラー表示エリア -->
+            <div id="error-message" class="error-message" style="display: none;"></div>
+
+            <!-- 商品リスト表示エリア -->
+            <div id="item-list" class="item-list">
+                <!-- JavaScriptで動的に商品カードが挿入されます -->
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 メルカリ商品管理ツール</p>
+        </footer>
+    </div>
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- メインスクリプト（タイムスタンプ付き） -->
+    <script src="script.js?v=1.0"></script>
+</body>
+</html>

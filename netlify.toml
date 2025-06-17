@@ -1,0 +1,32 @@
+[build]
+  # ビルドコマンド（環境変数を埋め込むスクリプトを実行）
+  command = "node build.js"
+  
+  # 公開するディレクトリ
+  publish = "dist"
+
+# キャッシュ制御のヘッダー設定
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    # キャッシュを無効化
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+# 静的ファイル（CSS）のキャッシュ設定
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# JavaScriptファイルは常に最新を取得
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"

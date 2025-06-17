@@ -1,0 +1,22 @@
+# ビルド出力
+dist/
+
+# 環境変数
+.env
+.env.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# エディタ
+.vscode/
+.idea/
+
+# その他
+*.log
+*.tmp

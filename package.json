@@ -1,0 +1,12 @@
+{
+  "name": "mercari-product-tool",
+  "version": "1.0.0",
+  "description": "メルカリ商品管理ツール",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "echo 'ローカル開発の場合は、script.jsの環境変数を直接編集してください'"
+  },
+  "keywords": ["mercari", "supabase", "netlify"],
+  "author": "",
+  "license": "MIT"
+}
